@@ -14,3 +14,4 @@ def contact(request):
 
         return HttpResponse(f"Дай старый Бог вам здоровья {name}")
     return render(request, 'contact.html')
+

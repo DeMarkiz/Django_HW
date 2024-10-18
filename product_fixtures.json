@@ -1,0 +1,15 @@
+[
+{
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+        "name": "Jopa",
+        "description": "Мишен ASS",
+        "image": "static/images/512ecf62fa0b8d2b533d867cf0fc4667.webp",
+        "category": 1,
+        "purchase_price": "2000.00",
+        "created_at": "2024-10-17T15:00:15.611Z",
+        "updated_at": "2024-10-17T15:00:15.611Z"
+    }
+}
+]
