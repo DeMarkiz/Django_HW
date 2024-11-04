@@ -23,3 +23,4 @@ class Command(BaseCommand):
                 self.stdout.write(self.style.SUCCESS(f'ready: {product.name}'))
             else:
                 self.stdout.write(self.style.WARNING(f'not ready: {product.name}'))
+

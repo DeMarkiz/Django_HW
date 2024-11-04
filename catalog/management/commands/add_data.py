@@ -16,3 +16,4 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS("Категории загружены из фикстур успешно"))
         call_command("loaddata", "products_fixture.json", format="json")
         self.stdout.write(self.style.SUCCESS("Продукты загружены из фикстур успешно"))
+
