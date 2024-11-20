@@ -12,11 +12,11 @@
 # Инструкция по установке
 Чтобы скачать репозиторий:
 
-`git clone https://github.com/DeMarkiz/Django_HomeWork`
+`git clone git@github.com:MichailFedyaev/main.git`
 
 Затем вам необходимо установить основные зависимости для запуска проекта в вашей системе:
 
 ```pip install -r requirements.txt```
 
 ## Контакт для обратной связи
-За дополнительной информацией обращайтесь: `de.markiz.tg.soft@gmail.com`
+За дополнительной информацией обращайтесь: `drovosekov1910@mail.ru`

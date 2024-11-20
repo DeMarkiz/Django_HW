@@ -16,3 +16,4 @@ class BlogEntryAdmin(admin.ModelAdmin):
             return obj.content[:50] + '...'
         return obj.content
     short_content.short_description = 'content'
+
