@@ -12,11 +12,11 @@
 # Инструкция по установке
 Чтобы скачать репозиторий:
 
-`git clone git@github.com:MichailFedyaev/main.git`
+`git clone git@github.com:DeMarkiz/main.git`
 
 Затем вам необходимо установить основные зависимости для запуска проекта в вашей системе:
 
 ```pip install -r requirements.txt```
 
 ## Контакт для обратной связи
-За дополнительной информацией обращайтесь: `drovosekov1910@mail.ru`
+За дополнительной информацией обращайтесь: `markberezhnoy27@gmail.com `
