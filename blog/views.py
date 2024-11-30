@@ -1,4 +1,3 @@
-
 from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.urls import reverse, reverse_lazy

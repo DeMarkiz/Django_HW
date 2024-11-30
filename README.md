@@ -19,4 +19,4 @@
 ```pip install -r requirements.txt```
 
 ## Контакт для обратной связи
-За дополнительной информацией обращайтесь: `markberezhnoy27@gmail.com `
+За дополнительной информацией обращайтесь: `markberezhnoy27@gmail.com`
