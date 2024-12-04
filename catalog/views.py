@@ -1,4 +1,6 @@
 from django.http import HttpResponse, HttpResponseForbidden
+from unicodedata import category
+
 from .models import Product, Category
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -6,7 +8,10 @@ from django.views.generic import ListView, DetailView, TemplateView, CreateView,
 from .models import Product
 from .forms import ProductForm
 from django.urls import reverse_lazy
-
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
+from .services import get_products_by_category
+from django.core.cache import cache
 
 class ProductCreateView(LoginRequiredMixin, CreateView):
     model = Product
@@ -46,9 +51,23 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
 
 class ProductListView(ListView):
     model = Product
+    template_name = 'catalog/product_list.html'
+    context_object_name = 'products'
 
     def get_queryset(self):
-        return Product.objects.all()
+        # Ключ для кеша
+        cache_key = 'product_list'
+
+        # Попытка получить список продуктов из кэша
+        cached_products = cache.get(cache_key)
+
+        if not cached_products:
+            # Если продуктов в кеше нет, получаем их из базы данных
+            cached_products = Product.objects.all()
+            # Сохраняем список продуктов в кэш на 15 минут
+            cache.set(cache_key, cached_products, timeout=60 * 15)
+
+        return cached_products
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -57,8 +76,10 @@ class ProductListView(ListView):
         return context
 
 
+@method_decorator(cache_page(60 * 15), name='dispatch')
 class ProductDetailView(LoginRequiredMixin, DetailView):
     model = Product
+    template_name = 'catalog/product_detail.html'
 
 
 class ProductUnpublishView(LoginRequiredMixin, View):
@@ -82,3 +103,11 @@ class ContactsView(LoginRequiredMixin, TemplateView):
         return HttpResponse(
             f"{name}, указанные Вами телефон и сообщение получены<br>Телефон: {phone}<br>Сообщение: {message}"
         )
+
+class ProductsByCategoryView(ListView):
+    template_name = 'catalog/products_by_category.html'
+    context_object_name = 'products'
+
+    def get_queryset(self):
+        category_id = self.kwargs.get('category_id')
+        return get_products_by_category(category_id)
