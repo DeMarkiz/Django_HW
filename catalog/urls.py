@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.urls import path, include
 from . import views
+from .views import ProductsByCategoryView
 
 app_name = 'catalog'
 
@@ -29,4 +30,6 @@ urlpatterns = [
     path("product/<int:pk>/update", views.ProductUpdateView.as_view(), name="product_update"),
     path("product/<int:pk>/delete", views.ProductDeleteView.as_view(), name="product_delete"),
     path("product/<int:pk>", views.ProductDetailView.as_view(), name="product_detail"),
+    path("product/<int:pk>/unpublish", views.ProductUnpublishView.as_view(), name="product_unpublish"),
+    path('category/<int:category_id>/', ProductsByCategoryView.as_view(), name='products_by_category'),
 ]
